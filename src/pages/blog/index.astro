@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+function charCount(body: string) {
+  return body.replace(/[#*`\[\]()>\-!\|~]/g, '').replace(/\s+/g, '').length;
+}
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="bg-background text-foreground min-h-screen">
+    <Header />
+    <main class="max-w-3xl mx-auto px-6 pt-24 pb-16">
+      <h1 class="font-serif text-3xl font-bold text-foreground mb-8">文章</h1>
+
+      {posts.length === 0 ? (
+        <p class="text-muted-foreground text-center py-20">暂无文章</p>
+      ) : (
+        <div class="space-y-4">
+          {posts.map((post, i) => (
+            <article class="group relative bg-card border border-border/50 rounded-xl p-5 article-enter hover:border-primary/30 transition-colors duration-200" style={`animation-delay: ${i * 80}ms`}>
+              <div class="flex gap-4 sm:gap-5">
+                <div class="flex-1 min-w-0">
+                  <h3 class="font-serif text-lg sm:text-xl font-bold text-foreground mb-3 leading-tight group-hover:text-primary dark:group-hover:text-foreground transition-colors duration-75 flex items-start gap-2">
+                    <span class="w-1 h-6 shrink-0 bg-primary rounded-full mt-0.5"></span>
+                    <a href={`/blog/${post.id}/`} class="flex-1 min-w-0">
+                      {post.data.title}
+                    </a>
+                  </h3>
+                  <div class="flex items-center gap-4 text-xs text-muted-foreground mb-3">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+                    </time>
+                    <span>{charCount(post.body || '')} 字</span>
+                    {post.data.tags && post.data.tags.length > 0 && (
+                      <div class="flex gap-1">
+                        {post.data.tags.map((tag) => (
+                          <span class="px-1.5 py-0.5 rounded text-[10px] bg-secondary text-secondary-foreground">{tag}</span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <p class="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                    {post.data.description}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </main>
+    <Footer />
+  </body>
+</html>

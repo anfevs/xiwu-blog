@@ -1,0 +1,19 @@
+---
+import { SITE_TITLE } from '../consts';
+const today = new Date();
+---
+
+<footer class="border-t border-border/50 bg-background py-12">
+  <div class="max-w-6xl mx-auto px-6 text-center space-y-4">
+    <p class="text-sm text-muted-foreground">&copy; {today.getFullYear()} {SITE_TITLE}</p>
+    <div class="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+      <a href="/" class="hover:text-foreground transition-colors">首页</a>
+      <a href="/timeline" class="hover:text-foreground transition-colors">时间线</a>
+      <a href="/friends" class="hover:text-foreground transition-colors">友链</a>
+      <a href="/about" class="hover:text-foreground transition-colors">关于</a>
+    </div>
+    <p class="text-xs text-muted-foreground">
+      <a href="/rss.xml" class="hover:text-primary transition-colors">RSS 订阅</a>
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+
+@source "../";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--color-background-cv);
+  --color-foreground: var(--color-foreground-cv);
+  --color-card: var(--color-card-cv);
+  --color-card-foreground: var(--color-card-foreground-cv);
+  --color-primary: var(--color-primary-cv);
+  --color-primary-foreground: var(--color-primary-foreground-cv);
+  --color-secondary: var(--color-secondary-cv);
+  --color-secondary-foreground: var(--color-secondary-foreground-cv);
+  --color-muted: var(--color-muted-cv);
+  --color-muted-foreground: var(--color-muted-foreground-cv);
+  --color-accent: var(--color-accent-cv);
+  --color-accent-foreground: var(--color-accent-foreground-cv);
+  --color-border: var(--color-border-cv);
+  --color-ring: var(--color-ring-cv);
+  --color-code-bg: var(--color-code-bg-cv);
+  --radius-default: 0.5rem;
+  --font-sans: 'Inter', 'Atkinson', system-ui, sans-serif;
+  --font-serif: 'Noto Serif SC', 'Georgia', serif;
+}
+
+:root {
+  --color-background-cv: #fefcf8;
+  --color-foreground-cv: #1a1a1a;
+  --color-card-cv: #ffffff;
+  --color-card-foreground-cv: #1a1a1a;
+  --color-primary-cv: #c23a3a;
+  --color-primary-foreground-cv: #ffffff;
+  --color-secondary-cv: #f7f3ee;
+  --color-secondary-foreground-cv: #1a1a1a;
+  --color-muted-cv: #f3f4f6;
+  --color-muted-foreground-cv: #6b7280;
+  --color-accent-cv: #c23a3a;
+  --color-accent-foreground-cv: #ffffff;
+  --color-border-cv: #e5e7eb;
+  --color-ring-cv: #c23a3a;
+  --color-code-bg-cv: #f3f4f6;
+}
+
+.dark {
+  --color-background-cv: #1a2233;
+  --color-foreground-cv: #e5e7eb;
+  --color-card-cv: #232d3f;
+  --color-card-foreground-cv: #e5e7eb;
+  --color-primary-cv: #d45a5a;
+  --color-primary-foreground-cv: #1a1a1a;
+  --color-secondary-cv: #2a3547;
+  --color-secondary-foreground-cv: #e5e7eb;
+  --color-muted-cv: #2a3547;
+  --color-muted-foreground-cv: #9ca3af;
+  --color-accent-cv: #d45a5a;
+  --color-accent-foreground-cv: #1a1a1a;
+  --color-border-cv: #3a4560;
+  --color-ring-cv: #d45a5a;
+  --color-code-bg-cv: #2a3547;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background-cv);
+  color: var(--color-foreground-cv);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body { font-weight: 450; }
+
+::selection { background-color: #c23a3a33; }
+.dark ::selection { color: #eee; background-color: #30588066; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.article-enter { opacity: 0; animation: 0.32s forwards fade-in-up; }
+
+.prose {
+  max-width: 65ch; font-size: 1rem; line-height: 1.75; color: var(--color-foreground-cv);
+}
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  font-family: var(--font-serif); color: var(--color-foreground-cv);
+  line-height: 1.3; margin-top: 2em; margin-bottom: 0.5em;
+}
+.prose h1 { font-size: 2.25rem; font-weight: 700; }
+.prose h2 { font-size: 1.875rem; font-weight: 600; margin-top: 2.5em; padding-bottom: 0.3em; border-bottom: 1px solid var(--color-border-cv); }
+.prose h3 { font-size: 1.5rem; font-weight: 600; }
+.prose p { margin-bottom: 1.25em; }
+.prose a { color: var(--color-primary-cv); text-decoration: underline; text-underline-offset: 2px; }
+.prose a:hover { opacity: 0.8; }
+.prose strong { font-weight: 600; }
+.prose blockquote { border-left: 3px solid var(--color-border-cv); padding: 0.25em 0 0.25em 1.25em; margin: 1.5em 0; color: var(--color-muted-foreground-cv); font-style: italic; }
+.prose code { background: var(--color-code-bg-cv); padding: 0.15em 0.4em; border-radius: 0.25rem; font-size: 0.875em; }
+.prose pre { background: var(--color-code-bg-cv); padding: 1em 1.25em; border-radius: 0.5rem; overflow-x: auto; margin: 1.5em 0; }
+.prose pre code { background: none; padding: 0; }
+.prose img { border-radius: 0.5rem; max-width: 100%; height: auto; }
+.prose hr { border: 0; border-top: 1px solid var(--color-border-cv); margin: 2em 0; }
+.prose ul, .prose ol { padding-left: 1.5em; margin-bottom: 1.25em; }
+.prose li { margin-bottom: 0.5em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .article-enter { opacity: 1; animation: none; transform: none; }
+}

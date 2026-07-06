@@ -1,0 +1,38 @@
+---
+title: 'Markdown 写作完全指南'
+description: '掌握 Markdown 语法，让写作更专注内容本身'
+pubDate: '2026-06-15'
+tags: ['写作', 'Markdown', '效率']
+category: '写作'
+---
+
+## 基础语法
+
+### 标题
+
+使用 `#` 号标记不同级别的标题。
+
+### 链接和图片
+
+```
+[链接文字](https://example.com)
+![图片描述](image.png)
+```
+
+### 代码块
+
+使用三个反引号包裹代码：
+
+```python
+def hello():
+    print("Hello World")
+```
+
+### 列表
+
+- 无序列表用 `-`
+- 有序列表用 `1.`
+
+## 扩展语法
+
+许多 Markdown 编辑器支持表格、脚注、任务列表等扩展语法。
